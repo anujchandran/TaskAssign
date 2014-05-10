@@ -1,0 +1,42 @@
+<% @page_title = 'new project' %>
+<%= link_to("Back",{:action => 'index'}, :class => 'back-link') %>
+<div class = "user new">
+	<%= error_messages_for(@users) %>
+	<%= form_for(:project_table, :url => {:action => 'create'}, :html => { :class => 'add_user'}) do |f| %>
+	<h2>New Project</h2>
+	<table class="add-data">
+		<tr>
+			<th><%= f.label(:project_name, "Project Title") %></th>
+			<td><%= f.text_field(:project_name) %></td>
+		</tr>
+		<tr>
+			<th><%= f.label(:owner_name, "Owner name") %></th>
+			<td><%= f.text_field(:owner_name) %></td>
+		</tr>
+		</tr>
+			<th><%= f.label(:start_date, "Start Date") %></th>
+			<td><%= f.text_field :start_date, 'data-behaviour' => 'datepicker_start' %></td>
+		</tr>
+		</tr>
+			<th><%= f.label(:end_date, "Finish Date") %></th>
+			<td><%= f.text_field :end_date, 'data-behaviour' => 'datepicker_end' %></td>
+		</tr>
+		</tr>
+			<th><%= f.label(:user_id, "Assignee") %></th>
+			<td><%= f.select(:user_id, User.all.map { |p| [p.user_name, p.id] } )%></td>
+		<tr>
+			<th><%= f.label(:status, "Status") %></th>
+			<td><%= f.select(:status, ['started','finished']) %></td>
+		<tr>
+	</table>
+	<div class="form-buttons">
+		<%= submit_tag("New Project") %>
+	</div>	  
+	<% end %>
+<script>
+  $(document).ready(function(){
+    $('[data-behaviour~=datepicker_start]').datepicker({format: 'yyyy-mm-dd'});
+    $('[data-behaviour~=datepicker_end]').datepicker({format: 'yyyy-mm-dd'});
+  })
+</script>
+</div>

@@ -1,0 +1,58 @@
+<% @page_title = 'Update' %>
+
+<%= link_to("Back",{:action => 'index'}, :class => 'back-link') %>
+<div class = "user new">
+	<%= form_for(:task, :url => {:action => 'update', :id => @task.id }, :html => {:class => 'add_task'}) do |f| %>
+	<h2>New Task</h2>
+	<table class="add-data">
+		<tr>
+			<th><%= f.label(:task_name, "Task Name") %></th>
+			<td><%= f.text_field(:task_name) %></td>
+		</tr>
+		<tr>
+			<th><%= f.label(:tracker, "tracker") %></th>
+			<td><%= f.select(:tracker, ['admin','employee']) %></td>
+		</tr>
+		<tr>
+			<th><%= f.label(:description, "Description") %></th>
+			<td><%= f.text_area :description, :class => "tinymce", :rows => 40, :cols => 50 %></td>
+		</tr>
+		<tr>
+			<th><%= f.label(:status, "Status") %></th>
+			<td><%= f.select(:status, ['started','finished']) %></td>
+		<tr>
+			<th><%= f.label(:priority, "Priority") %></th>
+			<td><%= f.select(:priority, ['none','high','medium','low']) %></td>
+		</tr>
+			<th><%= f.label(:user_id, "Assignee") %></th>
+			<td><%= f.select(:user_id, User.all.map { |p| [p.user_name, p.id] } )%></td>
+		</tr>
+		</tr>
+			<th><%= f.label(:start_date, "Start Date") %></th>
+			<td><%= f.text_field :start_date, 'data-behaviour' => 'datepicker_start' %></td>
+		</tr>
+		</tr>
+			<th><%= f.label(:end_date, "Finish Date") %></th>
+			<td><%= f.text_field :end_date, 'data-behaviour' => 'datepicker_end' %></td>
+		</tr>
+		<tr>
+			<th><%= f.label(:estimated_hours, "Estimated Hours") %></th>
+			<td><%= f.text_field(:estimated_hours) %></td>
+		</tr>
+		<tr>
+			<th><%= f.label(:per_done, "Percentage Done") %></th>
+			<td><%= f.select(:per_done, ['0%','10%','20%','30%','40%','50%','60%','70%','80%','90%','100%']) %>
+		</tr>
+	</table>
+	<div class="form-buttons">
+		<%= submit_tag("Assign Task") %>
+	</div>	  
+	<% end %>
+	<%= tinymce %>
+	<script type="text/javascript">
+  $(document).ready(function(){
+    $('[data-behaviour~=datepicker_start]').datepicker({format: 'yyyy-mm-dd'});
+    $('[data-behaviour~=datepicker_end]').datepicker({format: 'yyyy-mm-dd'});
+  })
+</script>
+</div>

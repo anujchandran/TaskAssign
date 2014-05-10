@@ -1,0 +1,1 @@
+http://stackoverflow.com/questions/20934595/nokogiri-gem-installation-error-with-spree

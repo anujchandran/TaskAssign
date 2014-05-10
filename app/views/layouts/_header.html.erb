@@ -1,0 +1,30 @@
+<div class="header">
+	<p class="head"> My Tasks</p>
+	<%if session['user_name'] == 'admin'%>
+		<nav>
+			<ul>
+				<li><%= link_to("Home",{:controller =>'access',:action => 'index'})%></li>
+				<li><%= link_to("Team",{:controller =>'team',:action => 'index'})%></li>
+				<li><%= link_to("Users",{:controller =>'users',:action => 'index'})%></li>
+				<li><%= link_to("Project",{:controller =>'project_controller',:action => 'index'})%></li>
+				<li class="logout"><%= link_to("Logout",{:controller =>'access',:action => 'logout'})%></li>
+			<ul>
+		</nav>
+	<% elsif  session['user_name'] == 'leader'%>
+		<nav>
+			<ul>
+				<li><%= link_to("Home",{:controller =>'access',:action => 'index'})%></li>
+				<li><%= link_to("Project",{:controller =>'project_controller',:action => 'index',:id => session['user_id']})%></li>
+				<li><%= link_to("Task",{:controller =>'task',:action => 'index',:id => session['user_id']})%></li>
+				<li class="logout"><%= link_to("Logout",{:controller =>'access',:action => 'logout'})%></li>
+			<ul>
+		</nav>
+	<% else %>
+				<nav>
+			<ul>
+				<li><%= link_to("Task",{:controller =>'task',:action => 'index',:id => session['user_id']})%></li>
+				<li class="logout"><%= link_to("Logout",{:controller =>'access',:action => 'logout'})%></li>
+			<ul>
+		</nav>
+	<% end %>
+</div>

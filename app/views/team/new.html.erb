@@ -1,0 +1,19 @@
+<% @page_title ='new team' %>
+<div class = "user new">
+	<%= form_for(:team, :url => {:action => 'create'}, :html => {:class => 'add_user'}) do |f| %>
+	<h2>New Team</h2>
+	<table class="add-data">
+		<tr>
+			<th><%= f.label(:team_name, "Team Name") %></th>
+			<td><%= f.text_field(:team_name) %></td>
+		</tr>
+		<tr>
+			<th><%= f.label(:description, "Description") %></th>
+			<td><%= f.text_area (:description) %></td>
+		</tr>
+	</table>
+	<div class="form-buttons">
+		<%= submit_tag("Submit") %>
+	</div>	  
+	<% end %>
+</div>

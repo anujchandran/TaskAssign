@@ -1,0 +1,46 @@
+<% @page_title = 'new user' %>
+<div class = "user new">
+	<%= error_messages_for(@users) %>
+	<%= form_for(:user, :url => {:action => 'create'}, :html => { :class => 'add_user'}) do |f| %>
+	<h2>New User</h2>
+	<table class="add-data">
+		<tr>
+			<th><%= f.label(:first_name, "First Name") %></th>
+			<td><%= f.text_field(:first_name) %></td>
+		</tr>
+		<tr>
+			<th><%= f.label(:last_name, "Last Name") %></th>
+			<td><%= f.text_field(:last_name) %></td>
+		</tr>
+		<tr>
+			<th><%= f.label(:team_id, "Team") %></th>
+			<td><%= f.select(:team_id, Team.all.map { |t| [t.team_name, t.id] } )%></td>
+		</tr>
+		<tr>
+			<th><%= f.label(:user_type, "User Type") %></th>
+			<td><%= f.select(:user_type, ['admin','leader','employee']) %></td>
+		</tr>
+		<tr>
+			<th><%= f.label(:user_name, "User Name") %></th>
+			<td><%= f.text_field(:user_name) %></td>
+		</tr>
+			<th><%= f.label(:password, "Password") %></th>
+			<td><%= f.password_field(:password) %></td>
+		</tr>
+		<th><%= f.label(:password_confirmation, "Password Confirmation") %></th>
+			<td><%= f.password_field(:password_confirmation) %></td>
+		</tr>
+		<tr>
+			<th><%= f.label(:email, "Email") %></th>
+			<td><%= f.text_field(:email) %></td>
+		</tr>
+		<tr>
+			<th><%= f.label(:is_active, "Is active") %></th>
+			<td><%= f.select(:is_active, {'Active' => 1,'In Active' => 0}) %></td>
+		</tr>
+	</table>
+	<div class="form-buttons">
+		<%= submit_tag("Add User") %>
+	</div>	  
+	<% end %>
+</div>

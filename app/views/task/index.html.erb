@@ -1,0 +1,44 @@
+<% content_for :head do %>
+	<script>
+	    $(function() {
+	        $( "#sortable" ).sortable({
+	            revert: true,
+	    		update: function(){
+	    			return $.post($(this).data('update-url'), $(this).sortable('serialize'));
+	    		}
+	        });
+	        $( "#draggable" ).draggable({
+	            connectToSortable: "#sortable",
+	            opacity: 0.35,
+	            helper: "clone",
+	            revert: "invalid"
+	        });
+	        $( "ul, li" ).disableSelection();
+	    });
+	</script>
+<% end %>
+
+<% @page_title = 'Tasks' %>
+
+<% if !flash[:notice].blank? %>
+	<div class="notice">
+		<%= flash[:notice] %>
+	</div>
+<% end %>
+<div class="big">
+	<strong>Task Assigned</strong>
+	<ul id="sortable" data-update-url="/task/sort">
+		<% @tasks.each do |task| %>
+			<li id="task_<%= task.id %>">
+				<%= link_to :action => 'show',:id => task.id do %>
+					<%= content_tag :h2 do %>
+						<%=task.position %>.<%= task.task_name %>
+					<% end %>
+	            	<%= content_tag :p do %>
+	            		priority: <%= task.priority %>
+	            	<% end %>
+				<% end %>
+			</li>
+		<% end %>
+	</ul>
+</div>

@@ -1,0 +1,39 @@
+<% @page_title = 'admin home' %>
+<% if !flash[:notice].blank? %>
+	<div class="notice">
+		<%= flash[:notice] %>
+	</div>
+<% end %>
+
+
+<div class="user index">
+	<h2>Users</h2>
+	<%= link_to(" Add User",{ :action => 'new' },:class => 'action new') %>
+	<table class="listing" summary ="User list">
+		<tr class ="header">
+			<th>First Name</th>
+			<th>Second name</th>
+			<th>User name</th>
+			<th>Email</th>
+			<th>Is Active</th>
+			<th>Operations</th>
+		</tr>
+		<% @users.each do |user| %>
+		 <tr>
+		 	<td><%= user.first_name%></td>
+		 	<td><%= user.last_name%> </td>
+		 	<td><%= user.user_name%> </td>
+		 	<td><%= user.email%> </td>
+		 	<td><%= user.is_active ? 'Yes': 'No'%> </td>
+		 	<td>
+		 		<%= link_to("Show",{ :action => 'show', :id => user.id}, :class => 'action show') %>
+		 		<%= link_to("Edit",{ :action => 'edit', :id => user.id}, :class => 'action edit') %>
+		 		<%= link_to("Delete",{ :action => 'delete', :id => user.id }, :class => 'action delete') %>
+		 	</td>
+		 </tr>
+		 <% end %>	
+	</table>
+	<div class="apple_pagination">
+    	<%= will_paginate @posts, :page_links => true %>
+  	</div>
+</div>

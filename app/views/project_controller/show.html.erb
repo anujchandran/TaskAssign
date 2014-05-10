@@ -1,0 +1,25 @@
+<% @page_title = @project.project_name %>
+<% if !flash[:notice].blank? %>
+	<div class="notice">
+		<%= flash[:notice] %>
+	</div>
+<% end %>
+
+<div class="sub-container">
+	<%= link_to("assign Task",{ :controller => 'task',:action => 'new',:id=> @project.id },:class => 'action new') %>
+	<div class="">
+	  <h2><%= @project.project_name %></h2>
+	  <p> owner : <%= @project.owner_name %></p>
+	  <p> Project was started in <%= @project.start_date %></p>
+	  <h4>Current issues running on this projects are </h4>
+	  <% @project.tasks.each_with_index do |task, index| %>
+			<section>
+				<h2><%= index + 1 %>. <%= link_to(task.task_name,{:controller => 'task',:action => "show",:id =>task.id}) %>
+				</h2>
+				<p> assigned to <%= task.user.user_name %> </p>
+			</section>
+		<% end %>
+	</div>
+
+</div>
+

@@ -1,0 +1,29 @@
+<% @page_title = 'Teams' %>
+<% if !flash[:notice].blank? %>
+	<div class="notice">
+		<%= flash[:notice] %>
+	</div>
+<% end %>
+<div class ="user show add_user">
+	<h2>Team <%= @team.team_name %></h2>
+	<table class="" summary="User detail view">
+		<tr>
+			<th>Description</th>
+			<td><%= @team.description %></td>
+		</tr>
+		<tr>
+			<th>Team Members</th>
+		</tr>
+		<% @team.users.each do |user| %>
+		<tr>
+			<th></th>
+			<td><%= user.user_name %></td>
+		</tr>
+		<% end %>
+		<tr>
+			<th>Created at </th>
+			<td><%= @team.created_at %></td>
+		</tr>
+	</table>
+</div>
+

@@ -1,0 +1,36 @@
+<% @page_title = 'edit user' %>
+<%= link_to("Back",{:action => 'index'}, :class => 'back-link') %>
+<div class = "User edit">
+	<%= form_for(:user, :url => {:action => 'update', :id => @user.id }, :html => {:class => 'add_user'}) do |f| %>
+	<h2>Update User Details</h2>
+	<table class="add-data">
+		<tr>
+			<th>First Name</th>
+			<td><%= f.text_field(:first_name) %></td>
+		</tr>
+		<tr>
+			<th>Last Name</th>
+			<td><%= f.text_field(:last_name) %></td>
+		</tr>
+		<tr>
+			<th>User Name</th>
+			<td><%= f.text_field(:user_name) %></td>
+		</tr>
+		<tr>
+			<th><%= f.label(:user_type, "User Type") %></th>
+			<td><%= f.select(:user_type, ['admin','employee']) %></td>
+		</tr>
+		<tr>
+			<th>Email</th>
+			<td><%= f.text_field(:email) %></td>
+		</tr>
+		<tr>
+			<th>Is Active</th>
+			<td><%= f.select(:is_active, {'Active' => 1,'In Active' => 0}) %></td>
+		</tr>
+	</table>
+	<div class="form-buttons">
+		<%= submit_tag("update User") %>
+	</div>	  
+	<% end %>
+</div>

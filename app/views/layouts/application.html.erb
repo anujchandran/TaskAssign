@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Project | <%= @page_title%></title>
+		<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+		<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+		<%= content_for :head %>   
+		<%= csrf_meta_tags %>
+		<%= render 'layouts/shim' %>
+	</head>
+	<body onload="myFunction()">
+  			<%= render :partial => "layouts/header" %>
+
+		<div class="container">
+			<%= yield %>
+		</div>
+		<%= render 'layouts/footer' %>
+		<script type="text/javascript">
+			function myFunction() {
+    	// 		setInterval(function(){
+    	// 			$.ajax({
+					// 	type: "POST",
+					// 	url: '/screen_shot/cron_screenshot',
+					// 	success: function(data){
+					// 		console.log(data);
+					// 	},
+					// 	dataType: 'json'
+					// });
+    	// 		}, 60000);
+			}
+		</script>
+		<%= content_for :footer %>  
+	</body>
+</html>

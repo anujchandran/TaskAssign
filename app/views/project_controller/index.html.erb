@@ -1,0 +1,25 @@
+<% @page_title = 'Projects' %>
+<% if !flash[:notice].blank? %>
+	<div class="notice">
+		<%= flash[:notice] %>
+	</div>
+<% end %>
+
+
+<div class="sub-container">
+	<%if session['user_name'] == 'admin'%>
+		<%= link_to("New Project",{ :action => 'new' },:class => 'action new') %>
+	<% end %>
+	<%= link_to("History",{ :action => 'history' },:class => 'action new') %>
+	<h3>Currently Running Projects</h2>
+	<div class="area">
+		<% @projects.each_with_index do |project, index| %>
+			<section>
+				<h2><%= index + 1 %>. <%= link_to(project.project_name,{:action => "show",:id =>project.id}) %></h2>
+				<p>Project is owned by <%= project.owner_name %></p>
+				<p>This project was started in <%= project.start_date %> </p>
+			</section>
+		<% end %>
+	</div>
+
+</div>

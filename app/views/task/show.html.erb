@@ -1,0 +1,40 @@
+<% @page_title = 'list user' %>
+<% if !flash[:notice].blank? %>
+	<div class="notice">
+		<%= flash[:notice] %>
+	</div>
+<% end %>
+
+
+<%= link_to("Back",{:action => 'index'}, :class => 'back-link') %>
+<div class ="user show add_user">
+<%= link_to("Update",{ :controller => 'task',:action => 'edit',:id=> @task.id },:class => 'action new') %>
+	<h2>Tasks</h2>
+	<table class="" summary="User detail view">
+		<tr>
+			<th>Task Name</th>
+			<td><%= @task.task_name %></td>
+		</tr>
+		<tr>
+			<th>Description</th>
+			<td><%= @task.description.html_safe %></td>
+		</tr>
+		<tr>
+			<th>Priority</th>
+			<td><%= @task.priority %></td>
+		</tr>
+		<tr>
+			<th>Start Date</th>
+			<td><%= @task.start_date %></td>
+		</tr>
+		<tr>
+			<th>Finish Date</th>
+			<td><%= @task.end_date %></td>
+		</tr>
+		<tr>
+			<th>Created at </th>
+			<td><%= @task.created_at %></td>
+		</tr>
+	</table>
+	<%= link_to "Download", @task.file_avatar.url(:original, false) %>
+</div>

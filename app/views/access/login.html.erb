@@ -1,0 +1,28 @@
+<% @page_title = "Login" %>
+<% if !flash[:notice].blank? %>
+	<div class="notice">
+		<%= flash[:notice] %>
+	</div>
+<% end %>
+
+
+
+<div class="login">
+      <div class="div_header">
+        Login
+      </div>
+      <div class="login_form_container">
+        <%= form_tag(:action => 'attempt_login') do %>
+            <%= label_tag(:username) %>
+            <%= text_field_tag(:username) %>
+            <%= label_tag(:password) %>
+            <%= password_field_tag(:password) %>
+            <div class="field">
+                <%= check_box_tag :remember_me, 1, params[:remember_me] %>
+                <%= label_tag :remember_me %>
+            </div>
+            <%= submit_tag("Log In") %>
+        <% end %>
+      </div>
+      <div class="clear"></div>
+</div>

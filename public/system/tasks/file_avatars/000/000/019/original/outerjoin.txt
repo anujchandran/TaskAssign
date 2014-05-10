@@ -1,0 +1,2 @@
+outer join query
+SELECT * FROM anuj.product p LEFT OUTER JOIN warranty w ON p.productID=w.productID;
