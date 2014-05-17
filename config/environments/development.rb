@@ -30,8 +30,8 @@ Project::Application.configure do
     :enable_starttls_auto => true,
     :port => 587,
     :authentication => :plain,
-    :user_name => "kcanuj@gmail.com",
-    :password => 'vellambhagavathy',
+    :user_name => "your mail",
+    :password => 'please enter your password',
   }
 
   # Raise an error on page load if there are pending migrations
